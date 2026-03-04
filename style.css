@@ -1,0 +1,288 @@
+
+*,*::before, *::after {
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+
+body {
+    width: 100vw;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 auto;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    animation: bounceIn 0.8s cubic-bezier(0.75, 0.38, 0, 1.14);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(20px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+    
+
+main > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 20em auto;
+    border: 2px solid red;
+}
+
+div > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 10.3em;
+    height: 200px;
+    border: 2px solid orange;
+}
+
+div > div > ul {
+    list-style-type: none;
+    padding: 0;
+    border: 2px solid purple;
+    height: 80px;
+}
+
+div > div > ul li button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+
+    font-size: 8px;
+}
+
+div > div > div {
+    width: 80px;
+    height: 80px;
+    border: 3px solid green;
+}
+
+ol {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid blue;
+    width: 100px;
+    height: 80px;
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+ol:first-of-type {
+    justify-content: flex-end;
+}
+
+ol:nth-of-type(2) {
+    width: 60px;
+}
+
+ol:first-of-type li button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+}
+
+ol:nth-of-type(2) li button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+
+    font-size: 8px;
+}
+
+
+
+
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    height: 200px;
+    width: 8em;
+}
+
+
+
+form fieldset:first-of-type {
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+    padding: 10px 0;
+    margin: 0;
+    /* margin: 20em auto; */
+    gap: 20px;
+}
+
+form fieldset:first-of-type input[type="checkbox"] {
+    appearance: none;
+    background: black;
+    width: 30px;
+    height: 10px;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 0;
+
+    transition: bottom 0.4s ease-in-out;
+}
+
+form fieldset:first-of-type input[type="checkbox"]:checked {
+    background-color: green;
+    bottom: 80px;
+    animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+form fieldset:first-of-type :has(input[type="checkbox"]:checked) {
+    background: linear-gradient(to top, black 100%, transparent 0%);
+    animation: linearGradientBottomTop 0.3s ease-in-out;
+}
+
+@keyframes linearGradientBottomTop {
+    0% {
+        background: linear-gradient(to top, black 5%, transparent 5%);
+    }
+    50% {
+        background: linear-gradient(to top, black 50%, transparent 50%);
+    }
+    100% {
+        background: linear-gradient(to top, black 100%, transparent 0%);
+    }
+}
+
+form fieldset:first-of-type input[type="checkbox"]:active {
+    transform: scale(1.5);
+    animation: scaleUpStay 0.3s ease-in-out;
+}
+
+@keyframes scaleUpStay {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.5);
+    }
+}
+
+
+/* div:has(input[type="checkbox"]:checked) {
+
+} */
+
+form fieldset:first-of-type div {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    border: 2px solid red;
+    width: 20px;
+    height: 100px;
+    background: linear-gradient(to top, black 5%, transparent 5%);
+}
+
+form fieldset:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+
+    margin: 0;
+    padding: 10px 0;
+    gap: 20px;
+}
+
+form fieldset:nth-of-type(2) input[type="checkbox"] {
+    appearance: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    border-top: 4px solid black;
+    position: relative;
+
+    transition: border 0.8s ease-in-out;
+}
+
+form fieldset:nth-of-type(2) div:first-of-type input[type="checkbox"]:checked {
+    border-top: 1px solid black;
+    border-left: 4px solid black;
+}
+
+form fieldset:nth-of-type(2) div:nth-of-type(2) input[type="checkbox"]:checked {
+    border-top: 1px solid black;
+    border-right: 4px solid black;
+}
+
+form fieldset:nth-of-type(2) > div {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+
+form fieldset:nth-of-type(2) input[type="checkbox"] + label {
+    font-size: 10px;
+    position: relative;
+}
+
+form fieldset:nth-of-type(2) input[type="checkbox"]:after {
+    content: "Off";
+    font-size: 6px;
+    position: absolute;
+
+    top: 0;
+    left: -110%;
+    transform: translate(50%, 0);
+}
+
+form fieldset:nth-of-type(2) div:nth-of-type(2) input[type="checkbox"]:after {
+    top: 0;
+    left: 150%;
+    transform: translate(-50%, 0);
+
+}
