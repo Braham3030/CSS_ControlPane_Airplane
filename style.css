@@ -32,50 +32,176 @@ h1 {
         transform: translateY(0);
     }
 }
-    
 
-main > div{
+main > div:first-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    margin: 10em auto 1em auto;
+    width: 70vw;
+    gap: 1em;
+}
+
+main > div:first-of-type > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    
+    border: 2px solid blue;
+}
+
+main > div:first-of-type > div > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main > div:nth-of-type(2) {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin: 20em auto;
+    margin: 0 auto;
     border: 2px solid red;
 }
 
-div > div {
+div:nth-of-type(2) > div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     width: 10.3em;
-    height: 200px;
+    height: 15em;
     border: 2px solid orange;
 }
 
-div > div > ul {
+div:nth-of-type(2) > div > ul {
     list-style-type: none;
     padding: 0;
-    border: 2px solid purple;
-    height: 80px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: column;
 }
 
-div > div > ul li button {
+div:nth-of-type(2) > div > ul > li {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
+    padding: 0;
+    margin: 0;
+}
 
+div:nth-of-type(2) > div > ul > li::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 25px;
+    height: 10px;
+    border-radius: 16px;
+
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+
+    transition: width 0.4s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+div:nth-of-type(2) > div > ul > li:hover::after {
+    opacity: 1;
+    width: 40px;
+    height: 20px;
+}
+
+div:nth-of-type(2) > div > ul li input[type="radio"] {
+    appearance: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40px;
+    height: 20px;
+    margin: 0;
+
+    /* font-size: 8px; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+}
+
+div:nth-of-type(2) > div > ul li input[type="radio"]:checked {
+    background: rgba(0, 0, 0, 0.5);
+    width: 30px;
+}
+
+div:nth-of-type(2) > div > ul li input[type="radio"]::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    transform: translateX(-200%);
+    background: black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+    z-index: -1;
+    opacity: 0;
+
+    transition: transform 0.2s ease, opacity 0.4s ease;
+}
+
+div:nth-of-type(2) > div > ul li input[type="radio"]:checked::after {
+    transform: translateX(-400%);
+    opacity: 1;
+
+    transition: transform 0.4s ease, opacity 0.2s ease;
+
+}
+
+div > div > ul li input[type="radio"] + label {
     font-size: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 div > div > div {
-    width: 80px;
-    height: 80px;
-    border: 3px solid green;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-ol {
+div > div > div > img {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+:has(#Nav:checked) #NavIMG {
+    display: block;
+}
+
+:has(#Com:checked) #ComIMG {
+    display: block;
+}
+
+:has(#Fuel:checked) #FuelIMG {
+    display: block;
+}
+
+
+/* ol {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -96,9 +222,9 @@ ol:first-of-type {
 
 ol:nth-of-type(2) {
     width: 60px;
-}
+} */
 
-ol:first-of-type li button {
+/* ol:first-of-type li button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,7 +241,7 @@ ol:nth-of-type(2) li button {
     height: 15px;
 
     font-size: 8px;
-}
+} */
 
 
 
@@ -126,8 +252,8 @@ ol:nth-of-type(2) li button {
 form {
     display: flex;
     flex-direction: column;
-    height: 200px;
-    width: 8em;
+    height: 15em;
+    width: 10em;
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -140,7 +266,7 @@ form fieldset:first-of-type {
     align-items: flex-end;
     flex-direction: row;
     width: 100%;
-    height: 200px;
+    height: 100%;
     padding: 10px 0;
     margin: 0;
     border: none;
@@ -151,6 +277,7 @@ form fieldset:first-of-type {
 form fieldset:first-of-type input[type="checkbox"] {
     appearance: none;
     background: black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     width: 30px;
     height: 10px;
     border-radius: 8px;
@@ -162,7 +289,7 @@ form fieldset:first-of-type input[type="checkbox"] {
 
 form fieldset:first-of-type input[type="checkbox"]:checked {
     background-color: green;
-    bottom: 80px;
+    bottom: 8em;
     animation: scaleUp 0.3s ease-in-out;
 }
 
@@ -221,7 +348,7 @@ form fieldset:first-of-type div {
     position: relative;
     border: .5px solid black;
     width: 20px;
-    height: 100px;
+    height: 8em;
     background: linear-gradient(to top, black 5%, transparent 5%);
 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -241,8 +368,8 @@ form fieldset:nth-of-type(2) {
 form fieldset:nth-of-type(2) input[type="checkbox"] {
     appearance: none;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border: 1px solid black;
     border-top: 4px solid black;
     position: relative;
