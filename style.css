@@ -37,13 +37,52 @@ main > div:first-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid red;
-    margin: 10em auto 1em auto;
+    border: 2px solid green;
     width: 70vw;
+    margin: 10em auto 1em auto;
     gap: 1em;
 }
 
 main > div:first-of-type > div {
+    display: flex;
+    width: 100px;
+    height: 70px;
+    border: 2px solid blue;
+}
+
+/* main > div:first-of-type > ul li input[type="radio"] {
+
+} */
+
+main >div:first-of-type > ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+main > div:first-of-type > ul > li {
+    border: 2px solid orange;
+    padding: 2px 5px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+main > div:nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    margin: 1em auto 1em auto;
+    width: 70vw;
+    gap: 1em;
+}
+
+main > div:nth-of-type(2) > div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,13 +92,13 @@ main > div:first-of-type > div {
     border: 2px solid blue;
 }
 
-main > div:first-of-type > div > img {
+main > div:nth-of-type(2)> div > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-main > div:nth-of-type(2) {
+main > div:nth-of-type(3) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,19 +107,19 @@ main > div:nth-of-type(2) {
     border: 2px solid red;
 }
 
-div:nth-of-type(2) > div {
+div:nth-of-type(3) > div {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-wrap: wrap;
-    width: 10.3em;
     height: 15em;
     border: 2px solid orange;
 }
 
-div:nth-of-type(2) > div > ul {
+div:nth-of-type(3) > div > ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     border-radius: 8px 0 0 8px;
     height: 100px;
@@ -88,9 +127,10 @@ div:nth-of-type(2) > div > ul {
     justify-content: flex-start;
     align-items: flex-end;
     flex-direction: column;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-div:nth-of-type(2) > div > ul > li {
+div:nth-of-type(3) > div > ul > li {
     position: relative;
     display: flex;
     justify-content: center;
@@ -99,7 +139,7 @@ div:nth-of-type(2) > div > ul > li {
     margin: 0;
 }
 
-div:nth-of-type(2) > div > ul > li::after {
+div:nth-of-type(3) > div > ul > li::after {
     content: "";
     position: absolute;
     z-index: -1;
@@ -115,13 +155,13 @@ div:nth-of-type(2) > div > ul > li::after {
     transition: width 0.4s ease, height 0.3s ease, opacity 0.3s ease;
 }
 
-div:nth-of-type(2) > div > ul > li:hover::after {
+div:nth-of-type(3) > div > ul > li:hover::after {
     opacity: 1;
     width: 40px;
     height: 20px;
 }
 
-div:nth-of-type(2) > div > ul li input[type="radio"] {
+div:nth-of-type(3) > div > ul li input[type="radio"] {
     appearance: none;
     position: relative;
     display: flex;
@@ -137,12 +177,12 @@ div:nth-of-type(2) > div > ul li input[type="radio"] {
     border-radius: 8px 0 0 8px;
 }
 
-div:nth-of-type(2) > div > ul li input[type="radio"]:checked {
+div:nth-of-type(3) > div > ul li input[type="radio"]:checked {
     background: rgba(0, 0, 0, 0.5);
     width: 30px;
 }
 
-div:nth-of-type(2) > div > ul li input[type="radio"]::after {
+div:nth-of-type(3) > div > ul li input[type="radio"]::after {
     content: "";
     position: absolute;
     width: 5px;
@@ -158,7 +198,7 @@ div:nth-of-type(2) > div > ul li input[type="radio"]::after {
     transition: transform 0.2s ease, opacity 0.4s ease;
 }
 
-div:nth-of-type(2) > div > ul li input[type="radio"]:checked::after {
+div:nth-of-type(3) > div > ul li input[type="radio"]:checked::after {
     transform: translateX(-400%);
     opacity: 1;
 
@@ -179,25 +219,54 @@ div > div > div {
     width: 100px;
     height: 100px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    background: black;
+    overflow: hidden;
+
+    position: relative;
 }
 
 div > div > div > img {
-    display: none;
-    width: 100%;
-    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    width: 10%;
+    height: 10%;
     object-fit: cover;
+
+    transition: width 0.4s ease, height 0.4s ease, transform 0.4s ease;
 }
 
 :has(#Nav:checked) #NavIMG {
     display: block;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 :has(#Com:checked) #ComIMG {
     display: block;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 :has(#Fuel:checked) #FuelIMG {
     display: block;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
