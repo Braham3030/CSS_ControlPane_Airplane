@@ -37,13 +37,22 @@ main > div:first-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
     border: 2px solid green;
     width: 70vw;
     margin: 10em auto 1em auto;
-    gap: 1em;
+    gap: 5em;
 }
 
 main > div:first-of-type > div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 0;
+}
+
+main > div:first-of-type > div > div:nth-of-type(2), main > div:first-of-type > div > div:nth-of-type(4) {
     display: flex;
     width: 100px;
     height: 70px;
@@ -54,7 +63,7 @@ main > div:first-of-type > div {
 
 } */
 
-main >div:first-of-type > ul {
+main > div:first-of-type > div > div > ul {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,9 +74,9 @@ main >div:first-of-type > ul {
     margin: 0;
 }
 
-main > div:first-of-type > ul > li {
-    border: 2px solid orange;
+main > div:first-of-type > div > div > ul > li {
     padding: 2px 5px;
+    margin: 0;
     border-radius: 8px;
     font-size: 14px;
 }
@@ -116,7 +125,7 @@ div:nth-of-type(3) > div {
     border: 2px solid orange;
 }
 
-div:nth-of-type(3) > div > ul {
+div:nth-of-type(3) > div > ul, main > div:first-of-type > div > div > ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -130,7 +139,7 @@ div:nth-of-type(3) > div > ul {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-div:nth-of-type(3) > div > ul > li {
+div:nth-of-type(3) > div > ul > li, main > div:first-of-type > div > div > ul > li {
     position: relative;
     display: flex;
     justify-content: center;
@@ -139,7 +148,7 @@ div:nth-of-type(3) > div > ul > li {
     margin: 0;
 }
 
-div:nth-of-type(3) > div > ul > li::after {
+div:nth-of-type(3) > div > ul > li::after, main > div:first-of-type > div > div > ul > li::after {
     content: "";
     position: absolute;
     z-index: -1;
@@ -155,13 +164,13 @@ div:nth-of-type(3) > div > ul > li::after {
     transition: width 0.4s ease, height 0.3s ease, opacity 0.3s ease;
 }
 
-div:nth-of-type(3) > div > ul > li:hover::after {
+div:nth-of-type(3) > div > ul > li:hover::after, main > div:first-of-type > div > div > ul > li:hover::after {
     opacity: 1;
     width: 40px;
     height: 20px;
 }
 
-div:nth-of-type(3) > div > ul li input[type="radio"] {
+div:nth-of-type(3) > div > ul li input[type="radio"], main > div:first-of-type > div > div > ul li input[type="radio"] {
     appearance: none;
     position: relative;
     display: flex;
@@ -177,12 +186,12 @@ div:nth-of-type(3) > div > ul li input[type="radio"] {
     border-radius: 8px 0 0 8px;
 }
 
-div:nth-of-type(3) > div > ul li input[type="radio"]:checked {
+div:nth-of-type(3) > div > ul li input[type="radio"]:checked, main > div:first-of-type > div > div > ul li input[type="radio"]:checked {
     background: rgba(0, 0, 0, 0.5);
     width: 30px;
 }
 
-div:nth-of-type(3) > div > ul li input[type="radio"]::after {
+div:nth-of-type(3) > div > ul li input[type="radio"]::after, main > div:first-of-type > div > div > ul li input[type="radio"]::after {
     content: "";
     position: absolute;
     width: 5px;
@@ -198,7 +207,7 @@ div:nth-of-type(3) > div > ul li input[type="radio"]::after {
     transition: transform 0.2s ease, opacity 0.4s ease;
 }
 
-div:nth-of-type(3) > div > ul li input[type="radio"]:checked::after {
+div:nth-of-type(3) > div > ul li input[type="radio"]:checked::after, main > div:first-of-type > div > div > ul li input[type="radio"]:checked::after {
     transform: translateX(-400%);
     opacity: 1;
 
@@ -206,7 +215,7 @@ div:nth-of-type(3) > div > ul li input[type="radio"]:checked::after {
 
 }
 
-div > div > ul li input[type="radio"] + label {
+div > div > ul li input[type="radio"] + label, main > div:first-of-type > div > div > ul li input[type="radio"] + label {
     font-size: 8px;
     position: absolute;
     top: 50%;
@@ -215,7 +224,7 @@ div > div > ul li input[type="radio"] + label {
     pointer-events: none;
 }
 
-div > div > div {
+div:nth-of-type(3) > div:first-of-type > div, main > div:first-of-type > div > div:nth-of-type(2), main > div:first-of-type > div > div:nth-of-type(4) {
     width: 100px;
     height: 100px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -225,7 +234,7 @@ div > div > div {
     position: relative;
 }
 
-div > div > div::after {
+div:nth-of-type(3) > div:first-of-type > div::after {
     content: "";
     position: absolute;
     top: 50%;
