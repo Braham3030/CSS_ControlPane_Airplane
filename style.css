@@ -200,6 +200,16 @@ div:nth-of-type(3) > div > ul li input[type="radio"]:checked, main > div:first-o
     width: 30px;
 }
 
+div:nth-of-type(3) > div > ul li input[type="radio"]:hover, main > div:first-of-type > div > div > ul li input[type="radio"]:hover {
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(5px);
+}
+
+div:nth-of-type(3) > div > ul li input[type="radio"]:hover + label, main > div:first-of-type > div > div > ul li input[type="radio"]:hover + label {
+    color: white;
+    font-weight: 900;
+}
+
 div:nth-of-type(3) > div > ul li input[type="radio"]::after, main > div:first-of-type > div > div > ul li input[type="radio"]::after {
     content: "";
     position: absolute;
@@ -587,3 +597,7 @@ form fieldset:nth-of-type(2) div:nth-of-type(2) input[type="checkbox"]:after {
     transform: translate(-50%, 0);
 
 }
+
+
+
+/* Interaction triggers */
