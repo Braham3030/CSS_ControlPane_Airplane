@@ -363,7 +363,7 @@ form fieldset:first-of-type {
     gap: 20px;
 }
 
-form fieldset:first-of-type input[type="checkbox"] {
+form fieldset:first-of-type input[type="range"] {
     appearance: none;
     background: black;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -372,11 +372,12 @@ form fieldset:first-of-type input[type="checkbox"] {
     border-radius: 8px;
     position: absolute;
     bottom: 0;
+    transform: rotate(90deg);
 
     transition: bottom 0.4s ease-in-out;
 }
 
-form fieldset:first-of-type input[type="checkbox"]:checked {
+form fieldset:first-of-type input[type="range"]:checked {
     background-color: green;
     bottom: 8em;
     animation: scaleUp 0.3s ease-in-out;
@@ -394,7 +395,7 @@ form fieldset:first-of-type input[type="checkbox"]:checked {
     }
 }
 
-form fieldset:first-of-type :has(input[type="checkbox"]:checked) {
+form fieldset:first-of-type :has(input[type="range"]:checked) {
     background: linear-gradient(to top, black 100%, transparent 0%);
     animation: linearGradientBottomTop 0.3s ease-in-out;
 }
@@ -411,7 +412,7 @@ form fieldset:first-of-type :has(input[type="checkbox"]:checked) {
     }
 }
 
-form fieldset:first-of-type input[type="checkbox"]:active {
+form fieldset:first-of-type input[type="range"]:active {
     transform: scale(1.5);
     animation: scaleUpStay 0.3s ease-in-out;
 }
