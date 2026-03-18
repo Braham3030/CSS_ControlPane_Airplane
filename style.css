@@ -511,7 +511,6 @@ main {
           height: 100px;
           margin: 0;
 
-          /* font-size: 8px; */
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
           border-radius: 8px 0 0 8px;
           pointer-events: var(--inactiveButton);
@@ -535,7 +534,6 @@ main {
           }
 
           &:checked {
-            /* background: rgba(0, 0, 0, 0.5); */
             height: 40px;
             box-shadow: 0 0 5px var(--cockpitLight);
 
