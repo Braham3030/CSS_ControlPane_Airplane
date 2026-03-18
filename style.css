@@ -25,9 +25,9 @@
         --font-style: normal;
 
         /* Runway IMG */
-        --runway-y: -120em;
-        --runway-speed: 2em;
-        --runway-zoom: 0.3%;
+        --runway-y: -180vh;
+        --runway-speed: 1.5vh;
+        --runway-zoom: 0.5vhw;
     }
 
 
@@ -57,7 +57,7 @@ body {
 
     > header {
     background: var(--cockpitColor);
-    height: 10em;
+    height: 6em;
     padding: 0;
     margin: 0;
 
@@ -153,7 +153,7 @@ main {
     flex-direction: column;
     justify-content: flex-end;
     width: 100vw;
-    height: calc(100vh - 10em);
+    height: calc(100vh - 6em);
     animation: shake 0.1s linear infinite;
 
     /* General div styling */
@@ -163,7 +163,8 @@ main {
     transition: box-shadow 1.4s ease-in-out 1.4s;
     }
 
-    /* Windows */
+    /* MARK:Windows */
+
     > div:first-of-type {
     display: flex;
     justify-content: center;
@@ -171,6 +172,8 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     flex-grow: 1;
+    flex-basis: 40%;
+    min-height: 200px;
     width: 100%;
     overflow: hidden;
     border: 8px solid black;
@@ -406,9 +409,122 @@ main {
     }
     }
 
-    /* ------ Row 4: throttle and menu's instruments */
+    /* ------ MARK:Row 4: Gears ------ */
 
     > div:nth-of-type(4) {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background: var(--cockpitColor);
+
+    > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: row;
+    box-shadow: 0 0 5px var(--cockpitLight);
+
+    > li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    color: var(--cockpitTextColor);
+    text-shadow: var(--textGlow);
+
+    > input[type="radio"] {
+    appearance: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 40px;
+    height: 100px;
+    margin: 0;
+
+    /* font-size: 8px; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+    pointer-events: var(--inactiveButton);
+
+    &::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translateY(0%);
+    background: black;
+    box-shadow: 0 0 5px var(--cockpitLight);
+
+    z-index: -1;
+    opacity: 0;
+
+    transition: transform 0.2s ease, opacity 0.4s ease;
+    }
+
+    &:checked {
+    /* background: rgba(0, 0, 0, 0.5); */
+    height: 40px;
+    box-shadow: 0 0 5px var(--cockpitLight);
+
+    background: linear-gradient(
+        to top,
+        transparent 0%,
+        transparent 25%,
+        green 50%,
+        green 75%,
+        green 100%
+    );
+    background-size: 100% 300%;
+    background-position: 0% 100%;
+    animation: gearMovingColor 4s ease-in-out forwards;
+
+    &::after {
+    transform: translateY(-200%);
+    background: green;
+    opacity: 1;
+    z-index: 1;
+
+    transition: transform 0.4s ease, opacity 0.2s ease;
+    }
+    }
+
+    &:hover {
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(5px);
+
+    & + label {
+    color: white;
+    font-weight: 900;
+    
+    }
+    }
+    & + label {
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    }
+    }
+    }
+}
+    }
+
+    /* ------ MARK:Row 5: throttle and menu's instruments ------ */
+
+    > div:nth-of-type(5) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -854,6 +970,15 @@ input[type="checkbox"] {
     }
 }
 
+@keyframes gearMovingColor {
+    0% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
 
 /* form fieldset:first-of-type input[type="range"]::-ms-fill-lower {
     background: red;
@@ -891,6 +1016,9 @@ input[type="checkbox"] {
             width: 100px;
             height: 100px;
         }
+        > div:nth-of-type(4) {
+            height: 25em;
+        }
         > div:nth-of-type(4) > div > ul,
         > div:nth-of-type(2) > div > ul > li {
             transform: scale(0.8);
@@ -900,7 +1028,7 @@ input[type="checkbox"] {
             transform: scale(0.8);
             transform-origin: bottom center;
             /* margin-bottom is hier als fallback op het moment dat de height calc niet werkt */
-            margin-bottom: -15px;
+            margin-bottom: 0px;
         }
     }
 }
@@ -908,8 +1036,8 @@ input[type="checkbox"] {
 /* @media gebruik om de ":root" aan te spreken en te veranderen op basis van "width" */
 @media (max-width: 1000px) {
     :root {
-        --runway-y: -25em;
-        --runway-speed: 1.8em;
-        --runway-zoom: 1.6%;
+        --runway-y: -25vh;
+        --runway-speed: 1.8vh;
+        --runway-zoom: 1.6vw;
     }
 }
