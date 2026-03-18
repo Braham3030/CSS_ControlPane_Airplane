@@ -55,9 +55,75 @@ body {
 
     --shake-intensity: calc((max, var(--thrust) - 40) * 0.05);
 
+    > header {
+    background: var(--cockpitColor);
+    height: 10em;
+    padding: 0;
+    margin: 0;
+
+    transition: background 0.8s ease-in-out;
+
+    > h1 {
+    text-align: center;
+    margin: 0 auto;
+
+    color: white;
+    text-shadow: var(--textGlow);
+    font-family: var(--font-family);
+    font-style: var(--font-style);
+    font-size: 42px;
+    font-weight: 900;
+
+    animation: bounceIn 0.8s cubic-bezier(0.75, 0.38, 0, 0.7);
+    }
+    }
+
+    #NavIMG, #ComIMG, #FuelIMG {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+
+    transition: width 0.4s ease, height 0.4s ease, transform 0.4s ease;
+    }
+
+    &:has(#Nav:checked) div:nth-of-type(4) > div:first-of-type > div {
+
+    &::after {
+    opacity: var(--cockpitScreen);
+    height: var(--cockpitHeight);
+    bottom: 12%;
+    animation: var(--radar-animation-main);
+    }
+
+    &::before {
+    opacity: var(--cockpitScreen);
+    height: 135px;
+    bottom: 12%;
+    animation: var(--radar-animation-before);
+}
+}
+
+:has(#Nav:checked) #NavIMG, :has(#Com:checked) #ComIMG, :has(#Fuel:checked) #FuelIMG {
+    display: block;
+    opacity: var(--cockpitScreen);
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
     /* @container usage */
     container-type: inline-size;
     container-name: cockpit;
+    /* End */
+
 }
 
 body:has(form > fieldset:nth-of-type(2) > div:first-of-type input[type="checkbox"]:checked):has(form > fieldset:nth-of-type(2) > div:nth-of-type(2) input[type="checkbox"]:checked) {
@@ -76,78 +142,23 @@ body:has(form > fieldset:nth-of-type(2) > div:first-of-type input[type="checkbox
 
 }
 
-header {
-    background: var(--cockpitColor);
-    height: 10em;
-    padding: 0;
-    margin: 0;
-
-    transition: background 0.8s ease-in-out;
-}
-
-h1 {
-    text-align: center;
-    margin: 0 auto;
-
-    color: white;
-    text-shadow: var(--textGlow);
-    font-family: var(--font-family);
-    font-style: var(--font-style);
-    font-size: 42px;
-    font-weight: 900;
-
-    animation: bounceIn 0.8s cubic-bezier(0.75, 0.38, 0, 0.7);
-}
-
-@keyframes bounceIn {
-    0% {
-        transform: translateY(-100px);
-        opacity: 0;
-        font-size: 12px;
-        font-weight: var(--font-weight);
-    }
-    50% {
-        transform: translateY(20px);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0);
-        font-size: 42px;
-        font-weight: 900;
-    }
-}
-
-main {
+main { 
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: 100vw;
     height: calc(100vh - 10em);
     animation: shake 0.1s linear infinite;
-}
 
-@keyframes shake {
-    0% {
-        transform: translate(calc(var(--shake-intensity) * -1), calc(var(--shake-intensity) * -1));
-    }
-    25% {
-        transform: translate(calc(var(--shake-intensity) * 1), calc(var(--shake-intensity) * 1));
-    }
-    50% {
-        transform: translate(calc(var(--shake-intensity) * -1), calc(var(--shake-intensity) * 1));
-    }
-    75% {
-        transform: translate(calc(var(--shake-intensity) * 1), calc(var(--shake-intensity) * -1));
-    }
-    100% {
-        transform: translate(calc(var(--shake-intensity) * -1), calc(var(--shake-intensity) * -1));
-    }
-}
+    /* General div styling */
+    > div {
+    box-shadow: inset 0 30px 60px var(--cockpitLight);
 
+    transition: box-shadow 1.4s ease-in-out 1.4s;
+    }
 
-/* MARK: Window */
-
-main > div:first-of-type {
+    /* Windows */
+    > div:first-of-type {
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -157,40 +168,30 @@ main > div:first-of-type {
     width: 100%;
     overflow: hidden;
     border: 8px solid black;
-}
 
-main > div:first-of-type > div:first-of-type {
+    > div:first-of-type {
     border: 4px solid black;
     background: var(--cockpitColor);
     width: 100%;
     height: 20%;
 
     transition: background 0.9s ease-in-out;
-}
+    }
 
-
-main > div:first-of-type > div:nth-of-type(2), main > div:first-of-type > div:nth-of-type(3) {
+    > div:nth-of-type(2), 
+    > div:nth-of-type(3) {
     border: 4px solid black;
     height: 80%;
     width: 50%;
     border-radius: 8px;
     background: transparent;
-    
-}
+    }
+    }
+    /* END */
 
+    /* ------ Row 2: screens ------ */
 
-
-/* END */
-
-
-main > div {
-    box-shadow: inset 0 30px 60px var(--cockpitLight);
-
-    transition: box-shadow 1.4s ease-in-out 1.4s;
-}
-
-
-main > div:nth-of-type(2) {
+    > div:nth-of-type(2) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,109 +202,34 @@ main > div:nth-of-type(2) {
     gap: 5em;
 
     transition: background 1s ease-in-out;
-}
 
-main > div:nth-of-type(2) > div {
+    > div {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
     flex-direction: row;
     padding: 0;
-}
 
-main > div:nth-of-type(2) > div > div:nth-of-type(2), main > div:nth-of-type(2) > div > div:nth-of-type(4) {
-    display: flex;
-    width: 100px;
-    height: 70px;
-    border: 2px solid blue;
-}
-
-/* main > div:first-of-type > ul li input[type="radio"] {
-
-} */
-
-main > div:nth-of-type(2) > div > div > ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 5px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-main > div:nth-of-type(2) > div > div > ul > li {
-    padding: 2px 5px;
-    margin: 0;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-main > div:nth-of-type(3) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--cockpitColor);
-    margin: 0em auto;
-    width: 100vw;
-    gap: 5em;
-
-    transition: background 1.1s ease-in-out;
-}
-
-main > div:nth-of-type(3) > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 150px;
-    
-    border-radius: 2px;
-    border: 4px solid black;
-}
-
-main > div:nth-of-type(3)> div > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-main > div:nth-of-type(4) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: 0 auto;
-    width: 100%;
-    background: var(--cockpitColor);
-
-    transition: background 1.2s ease-in-out;
-}
-
-div:nth-of-type(4) > div {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    height: 15em;
-}
-
-div:nth-of-type(4) > div > ul, main > div:nth-of-type(2) > div > div > ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    border-radius: 8px 0 0 8px;
-    height: 100px;
+    > div > ul {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
     flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    
+    list-style-type: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+    height: 100px;
     box-shadow: 0 0 5px var(--cockpitLight);
-}
+    
 
-div:nth-of-type(4) > div > ul > li, main > div:nth-of-type(2) > div > div > ul > li {
+    > li {
+    border-radius: 8px;
+    font-size: 14px;
+
     position: relative;
     display: flex;
     justify-content: center;
@@ -312,31 +238,8 @@ div:nth-of-type(4) > div > ul > li, main > div:nth-of-type(2) > div > div > ul >
     margin: 0;
     color: var(--cockpitTextColor);
     text-shadow: var(--textGlow);
-}
 
-div:nth-of-type(4) > div > ul > li::after, main > div:nth-of-type(2) > div > div > ul > li::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 25px;
-    height: 10px;
-    border-radius: 16px;
-
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.5);
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-
-    transition: width 0.4s ease, height 0.3s ease, opacity 0.3s ease;
-}
-
-div:nth-of-type(4) > div > ul > li:hover::after, main > div:nth-of-type(2) > div > div > ul > li:hover::after {
-    opacity: 1;
-    width: 40px;
-    height: 20px;
-}
-
-div:nth-of-type(4) > div > ul li input[type="radio"], main > div:nth-of-type(2) > div > div > ul li input[type="radio"] {
+    > input[type="radio"] {
     appearance: none;
     position: relative;
     display: flex;
@@ -351,25 +254,8 @@ div:nth-of-type(4) > div > ul li input[type="radio"], main > div:nth-of-type(2) 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     border-radius: 8px 0 0 8px;
     pointer-events: var(--inactiveButton);
-}
 
-div:nth-of-type(4) > div > ul li input[type="radio"]:checked, main > div:nth-of-type(2) > div > div > ul li input[type="radio"]:checked {
-    background: rgba(0, 0, 0, 0.5);
-    width: 30px;
-    box-shadow: 0 0 5px var(--cockpitLight);
-}
-
-div:nth-of-type(4) > div > ul li input[type="radio"]:hover, main > div:nth-of-type(2) > div > div > ul li input[type="radio"]:hover {
-    background: rgba(0, 0, 0, 0.5);
-    filter: blur(5px);
-}
-
-div:nth-of-type(4) > div > ul li input[type="radio"]:hover + label, main > div:nth-of-type(2) > div > div > ul li input[type="radio"]:hover + label {
-    color: white;
-    font-weight: 900;
-}
-
-div:nth-of-type(4) > div > ul li input[type="radio"]::after, main > div:nth-of-type(2) > div > div > ul li input[type="radio"]::after {
+    &::after {
     content: "";
     position: absolute;
     width: 5px;
@@ -383,27 +269,68 @@ div:nth-of-type(4) > div > ul li input[type="radio"]::after, main > div:nth-of-t
     opacity: 0;
 
     transition: transform 0.2s ease, opacity 0.4s ease;
-}
+    }
 
-div:nth-of-type(4) > div > ul li input[type="radio"]:checked::after, main > div:nth-of-type(2) > div > div > ul li input[type="radio"]:checked::after {
+    &:checked {
+    background: rgba(0, 0, 0, 0.5);
+    width: 30px;
+    box-shadow: 0 0 5px var(--cockpitLight);
+
+    &::after {
     transform: translateX(-400%);
     opacity: 1;
     z-index: 1;
 
     transition: transform 0.4s ease, opacity 0.2s ease;
+    }
+    }
 
-}
+    &:hover {
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(5px);
 
-div > div > ul li input[type="radio"] + label, main > div:nth-of-type(2) > div > div > ul li input[type="radio"] + label {
+    & + label {
+    color: white;
+    font-weight: 900;
+    }
+    }
+
+    & + label {
     font-size: 8px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
-}
+    }
+    }
 
-div:nth-of-type(4) > div:first-of-type > div, main > div:nth-of-type(2) > div > div:nth-of-type(2), main > div:nth-of-type(2) > div > div:nth-of-type(4) {
+    &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 25px;
+    height: 10px;
+    border-radius: 16px;
+
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+
+    transition: width 0.4s ease, height 0.3s ease, opacity 0.3s ease;
+    }
+
+    &:hover::after {
+    opacity: 1;
+    width: 40px;
+    height: 20px;
+    }
+    }
+    }
+
+    > div:nth-of-type(2), 
+    > div:nth-of-type(4) {
     width: 100px;
     height: 100px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -411,55 +338,52 @@ div:nth-of-type(4) > div:first-of-type > div, main > div:nth-of-type(2) > div > 
     overflow: hidden;
 
     position: relative;
-}
+    }
+    }
+    }
 
-div:nth-of-type(4) > div:first-of-type > div::after {
-    content: "";
-    opacity: 0;
-    position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    width: 1px;
-    height: var(--cockpitHeight);
-    background: linear-gradient(to top, transparent 50%, rgb(7, 218, 7) 50%);
-    filter: drop-shadow(0 0 4px rgb(7, 218, 7));
-    z-index: 2;
+    /* ------ Row 3: cockpit center ------ */
+
+    > div:nth-of-type(3) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--cockpitColor);
+    margin: 0em auto;
+    width: 100vw;
+    gap: 5em;
+
+    transition: background 1.1s ease-in-out;
+
+    > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
     
-    transition: height .8s ease, opacity 0.4s ease, bottom 0.6s ease;
-}
+    border-radius: 2px;
+    border: 4px solid black;
 
-div:nth-of-type(4) > div:first-of-type > div::before {
-    content: "";
-    opacity: 0;
-    position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    width: 8px;
-    height: var(--cockpitHeight);
-    background: linear-gradient(to top, transparent 50%, rgb(0, 255, 0, 0.4) 50%);
-    filter: blur(4px);
-    z-index: 1;
-    
-    transition: height .8s ease, opacity 1s ease, bottom 0.6s ease;
-}
+    > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 
+    }
 
-main > div:nth-of-type(3) > div:first-of-type, main > div:nth-of-type(3) > div:last-of-type {
+    &:first-of-type, &:last-of-type {
     position: relative;
     display: flex;
     background: black;
 
     counter-reset: speed calc(var(--thrust) * 3);
-}
 
-main > div:nth-of-type(3) > div:first-of-type > img, main > div:nth-of-type(3) > div:last-of-type > img {
+    > img {
     opacity: var(--cockpitScreen);
-}
+    }
 
-
-main > div:nth-of-type(3) > div:first-of-type::after, main > div:nth-of-type(3) > div:last-of-type::after {
+    &::after {
     content: counter(speed) " km/h";
 
     position: absolute;
@@ -475,87 +399,189 @@ main > div:nth-of-type(3) > div:first-of-type::after, main > div:nth-of-type(3) 
 
     transition: opacity 0.8s ease-in-out 0.2s;
 }
-
-
-
-
-:has(#Nav:checked) div:nth-of-type(4) > div:first-of-type > div::after {
-    opacity: var(--cockpitScreen);
-    height: var(--cockpitHeight);
-    bottom: 12%;
-    animation: var(--radar-animation-main);
-    
-}
-
-:has(#Nav:checked) div:nth-of-type(4) > div:first-of-type > div::before {
-    opacity: var(--cockpitScreen);
-    height: 135px;
-    bottom: 12%;
-    animation: var(--radar-animation-before);
-}
-
-@keyframes radarRotate {
-    0% {
-        transform: translate(-50%, 50%) rotate(0deg);
     }
-    25% {
-        transform: translate(-50%, 50%) rotate(90deg);
     }
-    75% {
-        transform: translate(-50%, 50%) rotate(-90deg);
     }
-    100% {
-        transform: translate(-50%, 50%) rotate(0deg);
-    }
-}
 
-div > div > div > img {
-    display: block;
+    /* ------ Row 4: throttle and menu's instruments */
+
+    > div:nth-of-type(4) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 100%;
+    background: var(--cockpitColor);
+
+    transition: background 1.2s ease-in-out;
+
+    > div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    height: 15em;
+
+    > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: column;
+    box-shadow: 0 0 5px var(--cockpitLight);
+
+    > li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    color: var(--cockpitTextColor);
+    text-shadow: var(--textGlow);
+
+    > input[type="radio"] {
+    appearance: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40px;
+    height: 20px;
+    margin: 0;
+
+    /* font-size: 8px; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+    pointer-events: var(--inactiveButton);
+
+    &::after {
+    content: "";
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    transform: translateX(-200%);
+    background: black;
+    box-shadow: 0 0 5px var(--cockpitLight);
+
+    z-index: -1;
     opacity: 0;
-    width: 10%;
-    height: 10%;
-    object-fit: cover;
 
-    transition: width 0.4s ease, height 0.4s ease, transform 0.4s ease;
-}
+    transition: transform 0.2s ease, opacity 0.4s ease;
+    }
 
-:has(#Nav:checked) #NavIMG {
-    display: block;
-    opacity: var(--cockpitScreen);
-    width: 100%;
-    height: 100%;
+    &:checked {
+    background: rgba(0, 0, 0, 0.5);
+    width: 30px;
+    box-shadow: 0 0 5px var(--cockpitLight);
+
+    &::after {
+    transform: translateX(-400%);
+    opacity: 1;
+    z-index: 1;
+
+    transition: transform 0.4s ease, opacity 0.2s ease;
+    }
+    }
+
+    &:hover {
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(5px);
+
+    & + label {
+    color: white;
+    font-weight: 900;
+    
+    }
+    }
+    & + label {
+    font-size: 8px;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+    pointer-events: none;
+    }
+    }
 
-:has(#Com:checked) #ComIMG {
-    display: block;
-    opacity: var(--cockpitScreen);
-    width: 100%;
-    height: 100%;
-    top: 50%;
+
+    &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 25px;
+    height: 10px;
+    border-radius: 16px;
+
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+
+    transition: width 0.4s ease, height 0.3s ease, opacity 0.3s ease;
+    }
+
+    &:hover::after {
+    opacity: 1;
+    width: 40px;
+    height: 20px;
+    }
+    }
+    }
+    }
+    > div:first-of-type > div {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    background: black;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    bottom: 0%;
     left: 50%;
-    transform: translate(-50%, -50%);
-}
+    transform: translate(-50%, 50%);
+    width: 1px;
+    height: var(--cockpitHeight);
+    background: linear-gradient(to top, transparent 50%, rgb(7, 218, 7) 50%);
+    filter: drop-shadow(0 0 4px rgb(7, 218, 7));
+    z-index: 2;
+    
+    transition: height .8s ease, opacity 0.4s ease, bottom 0.6s ease;
+    }
 
-:has(#Fuel:checked) #FuelIMG {
-    display: block;
-    opacity: var(--cockpitScreen);
-    width: 100%;
-    height: 100%;
-    top: 50%;
+    &::before {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    bottom: 0%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 50%);
+    width: 8px;
+    height: var(--cockpitHeight);
+    background: linear-gradient(to top, transparent 50%, rgb(0, 255, 0, 0.4) 50%);
+    filter: blur(4px);
+    z-index: 1;
+    
+    transition: height .8s ease, opacity 1s ease, bottom 0.6s ease;
 }
 
-/* MARK: nesting throttle */
+    }
+    }
 
-form {
+
+    form {
     display: flex;
     flex-direction: column;
     height: 15em;
@@ -632,63 +658,21 @@ form {
     width: 100%;
     height: 100%;
     border-radius: 8px;
-}
-
     }
-}
-}
 
-/* Nesting throttle end */
-
-
-@keyframes scaleUp {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-
-/* form fieldset:first-of-type input[type="range"]::-ms-fill-lower {
-    background: red;
-} */
-
-/* form fieldset:first-of-type input[type="range"]::-webkit-slider-thumb:checked {
-    animation: scaleUp 0.3s ease-in-out;
-} */
-
-/* form fieldset:first-of-type input[type="range"]::-webkit-slider-thumb:active {
-    transform: scale(1.5);
-    animation: scaleUpStay 0.3s ease-in-out;
-} */
-
-@keyframes scaleUpStay {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.5);
-    }
-}
-
-form fieldset:first-of-type input[name="throttle1"]::-webkit-slider-runnable-track {
+    &[name="throttle1"]::-webkit-slider-runnable-track {
     background: linear-gradient(to top, black calc((var(--throttle1, 50) * 1%) * var(--enginePower)), transparent calc(var(--throttle1, 50) * 1%));
-}
-
-form fieldset:first-of-type input[name="throttle2"]::-webkit-slider-runnable-track {
+    }
+    &[name="throttle2"]::-webkit-slider-runnable-track {
     background: linear-gradient(to top, black calc((var(--throttle2, 50) * 1%) * var(--enginePower)), transparent calc(var(--throttle2, 50) * 1%));
+    }
+
+    }
 }
 
+    /* Engine button style */
 
-
-
-form fieldset:nth-of-type(2) {
+    fieldset:nth-of-type(2) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -784,11 +768,102 @@ input[type="checkbox"] {
 
 }
 }
+}
+
+}
 
 
+/* ---------------------------------------- */
 
-/* Interaction triggers */
+/* ------ @keyframes animations ------ */
 
+@keyframes bounceIn {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+        font-size: 12px;
+        font-weight: var(--font-weight);
+    }
+    50% {
+        transform: translateY(20px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        font-size: 42px;
+        font-weight: 900;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(calc(var(--shake-intensity) * -1), calc(var(--shake-intensity) * -1));
+    }
+    25% {
+        transform: translate(calc(var(--shake-intensity) * 1), calc(var(--shake-intensity) * 1));
+    }
+    50% {
+        transform: translate(calc(var(--shake-intensity) * -1), calc(var(--shake-intensity) * 1));
+    }
+    75% {
+        transform: translate(calc(var(--shake-intensity) * 1), calc(var(--shake-intensity) * -1));
+    }
+    100% {
+        transform: translate(calc(var(--shake-intensity) * -1), calc(var(--shake-intensity) * -1));
+    }
+}
+
+
+@keyframes radarRotate {
+    0% {
+        transform: translate(-50%, 50%) rotate(0deg);
+    }
+    25% {
+        transform: translate(-50%, 50%) rotate(90deg);
+    }
+    75% {
+        transform: translate(-50%, 50%) rotate(-90deg);
+    }
+    100% {
+        transform: translate(-50%, 50%) rotate(0deg);
+    }
+}
+
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleUpStay {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.5);
+    }
+}
+
+
+/* form fieldset:first-of-type input[type="range"]::-ms-fill-lower {
+    background: red;
+} */
+
+/* form fieldset:first-of-type input[type="range"]::-webkit-slider-thumb:checked {
+    animation: scaleUp 0.3s ease-in-out;
+} */
+
+/* form fieldset:first-of-type input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.5);
+    animation: scaleUpStay 0.3s ease-in-out;
+} */
 
 
 /* container query for resizes */
