@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Airplane Controller</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Kavoon&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Kavoon&display=swap");
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Control THE airplane</h1>
+      <h1>Control THE airplane</h1>
     </header>
 
     <!-- Use of AI for image creastion -->
@@ -19,114 +19,183 @@
     <!-- https://gemini.google.com/share/e4a03fcfe901 -->
 
     <main>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>
         <div>
-            <div></div>
-            <div></div>
-            <div></div>            
-        </div>
-        <div>
-            <div>
-                <div>
-                    <ul>
-                        <li>
-                            <input type="radio" name="mainScreenBtn" id="mainScreen1" checked>
-                            <label for="mainScreen1">AP</label>
-                        </li>
-                        <li>
-                            <input type="radio" name="mainScreenBtn" id="mainScreen2">
-                            <label for="mainScreen2">ASI</label>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="img/Gemini_AP_Screen.png" alt="Autopilot screen" id="main1IMG">
-                    <img src="img/Gemini_Aircraft_sensor_info.png" alt="Aircraft sensor information" id="main2IMG">
-                </div>
-            </div>
-            <div>
-                <div>
-                    <ul>
-                        <li>
-                            <input type="radio" name="mainScreenBtn2" id="mainScreen3" checked>
-                            <label for="mainScreen3">AP</label>
-                        </li>
-                        <li>
-                            <input type="radio" name="mainScreenBtn2" id="mainScreen4">
-                            <label for="mainScreen4">ATC</label>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="img/Gemini_AP_Screen.png" alt="Autopilot screen" id="main3IMG">
-                    <img src="img/Gemini_Air_Traffic_info.png" alt="Air traffic information" id="main4IMG">
-                </div>
-            </div>
-        </div>
-        
-        <div>
-            <div><img src="img/Altitude_Speed_Indicator_Screen.webp" alt="Speed and altitude indicator"></div>
-            <div><img src="img/Gemini_Primary_Flight_DIsplay.png" alt="Primary Flight Display"></div>
-            <div><img src="img/Gemini_Weather_Radar.png" alt="Weather Radar"></div>
-            <div><img src="img/Altitude_Speed_Indicator_Screen.webp" alt="Speed and altitude indicator"></div>
-        </div>
-        <div>
+          <div>
             <ul>
-                <li>
-                    <input type="radio" name="gear" id="gearOut" checked>
-                    <label for="gearOut">DOWN</label>
-                </li>
-                <li>
-                    <input type="radio" name="gear" id="gearIn">
-                    <label for="gearIn">UP</label>
-                </li>
+              <li>
+                <input
+                  type="radio"
+                  name="mainScreenBtn"
+                  id="mainScreen1"
+                  checked
+                />
+                <label for="mainScreen1">AP</label>
+              </li>
+              <li>
+                <input type="radio" name="mainScreenBtn" id="mainScreen2" />
+                <label for="mainScreen2">ASI</label>
+              </li>
             </ul>
+          </div>
+          <div>
+            <img
+              src="img/Gemini_AP_Screen.png"
+              alt="Autopilot screen"
+              id="main1IMG"
+            />
+            <img
+              src="img/Gemini_Aircraft_sensor_info.png"
+              alt="Aircraft sensor information"
+              id="main2IMG"
+            />
+          </div>
         </div>
         <div>
-            <div>
-                <ul>
-                    <li>
-                        <input type="radio" name="screenBtn" id="Nav" checked>
-                        <label for="screenBtn">NAV</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="screenBtn" id="Com">
-                        <label for="screenBtn">COM</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="screenBtn" id="Fuel">
-                        <label for="screenBtn">Fuel</label>
-                    </li>
-                </ul>
-                <div>
-                    <img src="img/Nav_Airplane_Screen.jpg" alt="Navigation Screen" id="NavIMG">
-                    <img src="img/Com_Airplane_Screen.ppm" alt="COM Screen" id="ComIMG">
-                    <img src="img/Fuel_Airplane_Screen.jpg" alt="Fuel Screen" id="FuelIMG">
-                </div>
-            </div>
-        <form>
-            <fieldset>
-                <div>
-                    <input type="range" name="throttle1" id="throttleLeft" value="0" min="0" max="100">
-                    <label for="throttleLeft"></label>
-                </div>
-                <div>
-                    <input type="range" name="throttle2" id="throttleRight" value="0" min="0" max="100">
-                    <label for="throttleRight"></label>
-                </div>
-            </fieldset>
-            <fieldset>
-                <div>
-                    <input type="checkbox" name="fuel" id="fuelLeft">
-                    <label for="fuelLeft">L</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="fuel" id="fuelRight">
-                    <label for="fuelRight">R</label>
-                </div>
-            </fieldset>
-        </form>
+          <div>
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="mainScreenBtn2"
+                  id="mainScreen3"
+                  checked
+                />
+                <label for="mainScreen3">AP</label>
+              </li>
+              <li>
+                <input type="radio" name="mainScreenBtn2" id="mainScreen4" />
+                <label for="mainScreen4">ATC</label>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <img
+              src="img/Gemini_AP_Screen.png"
+              alt="Autopilot screen"
+              id="main3IMG"
+            />
+            <img
+              src="img/Gemini_Air_Traffic_info.png"
+              alt="Air traffic information"
+              id="main4IMG"
+            />
+          </div>
         </div>
+      </div>
+
+      <div>
+        <div>
+          <img
+            src="img/Altitude_Speed_Indicator_Screen.webp"
+            alt="Speed and altitude indicator"
+          />
+        </div>
+        <div>
+          <img
+            src="img/Gemini_Primary_Flight_DIsplay.png"
+            alt="Primary Flight Display"
+          />
+        </div>
+        <div>
+          <img src="img/Gemini_Weather_Radar.png" alt="Weather Radar" />
+        </div>
+        <div>
+          <img
+            src="img/Altitude_Speed_Indicator_Screen.webp"
+            alt="Speed and altitude indicator"
+          />
+        </div>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <input type="radio" name="gear" id="gearOut" checked />
+            <label for="gearOut">DOWN</label>
+          </li>
+          <li>
+            <input type="radio" name="gear" id="gearIn" />
+            <label for="gearIn">UP</label>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div>
+          <ul>
+            <li>
+              <input type="radio" name="screenBtn" id="Nav" checked />
+              <label for="screenBtn">NAV</label>
+            </li>
+            <li>
+              <input type="radio" name="screenBtn" id="Com" />
+              <label for="screenBtn">COM</label>
+            </li>
+            <li>
+              <input type="radio" name="screenBtn" id="Fuel" />
+              <label for="screenBtn">Fuel</label>
+            </li>
+          </ul>
+          <div>
+            <img
+              src="img/Nav_Airplane_Screen.jpg"
+              alt="Navigation Screen"
+              id="NavIMG"
+            />
+            <img
+              src="img/Com_Airplane_Screen.ppm"
+              alt="COM Screen"
+              id="ComIMG"
+            />
+            <img
+              src="img/Fuel_Airplane_Screen.jpg"
+              alt="Fuel Screen"
+              id="FuelIMG"
+            />
+          </div>
+        </div>
+        <form>
+          <fieldset>
+            <div>
+              <input
+                type="range"
+                name="throttle1"
+                id="throttleLeft"
+                value="0"
+                min="0"
+                max="100"
+              />
+              <label for="throttleLeft"></label>
+            </div>
+            <div>
+              <input
+                type="range"
+                name="throttle2"
+                id="throttleRight"
+                value="0"
+                min="0"
+                max="100"
+              />
+              <label for="throttleRight"></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div>
+              <input type="checkbox" name="fuel" id="fuelLeft" />
+              <label for="fuelLeft">L</label>
+            </div>
+            <div>
+              <input type="checkbox" name="fuel" id="fuelRight" />
+              <label for="fuelRight">R</label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </main>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
