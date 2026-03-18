@@ -139,7 +139,7 @@ body {
       transform 0.4s ease;
   }
 
-  &:has(#Nav:checked) div:nth-of-type(4) > div:first-of-type > div {
+  &:has(#Nav:checked) div:nth-of-type(5) > div:first-of-type > div {
     &::after {
       opacity: var(--cockpitScreen);
       height: var(--cockpitHeight);
