@@ -447,7 +447,7 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    width: 40px;
+    width: 50px;
     height: 100px;
     margin: 0;
 
@@ -954,28 +954,6 @@ input[type="checkbox"] {
     }
 }
 
-
-/* @keyframes scaleUp {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes scaleUpStay {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.5);
-    }
-} */
-
 @keyframes gearMovingColor {
     0% {
         background-position: 0% 100%;
@@ -985,22 +963,7 @@ input[type="checkbox"] {
     }
 }
 
-
-/* form fieldset:first-of-type input[type="range"]::-ms-fill-lower {
-    background: red;
-} */
-
-/* form fieldset:first-of-type input[type="range"]::-webkit-slider-thumb:checked {
-    animation: scaleUp 0.3s ease-in-out;
-} */
-
-/* form fieldset:first-of-type input[type="range"]::-webkit-slider-thumb:active {
-    transform: scale(1.5);
-    animation: scaleUpStay 0.3s ease-in-out;
-} */
-
-
-/* container query for resizes */
+/* ------ MARK:container query for resizes ------ */
 
 @container cockpit (max-width: 1000px) {
     header {
