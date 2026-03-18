@@ -53,7 +53,7 @@ body {
 
     transition: background-position-y 8s cubic-bezier(0.5, 0, 1, 1), background-size 6s cubic-bezier(0.5, 0, 1, 1);
 
-    --shake-intensity: calc((max, var(--thrust) - 40) * 0.05);
+    --shake-intensity: calc(max(0, var(--thrust) - 40) * 0.05px);
 
     > header {
     background: var(--cockpitColor);
