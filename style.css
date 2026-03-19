@@ -116,7 +116,10 @@ body {
     }
   }
 
-  #NavIMG,
+  /* ======================================================= */
+
+
+  /* #NavIMG,
   #ComIMG,
   #FuelIMG,
   #main1IMG,
@@ -137,7 +140,7 @@ body {
       width 0.4s ease,
       height 0.4s ease,
       transform 0.4s ease;
-  }
+  } */
 
   &:has(#Nav:checked) div:nth-of-type(5) > div:first-of-type > div {
     &::after {
@@ -272,6 +275,27 @@ main {
       align-items: flex-start;
       flex-direction: row;
       padding: 0;
+
+      > div:nth-of-type(2) {
+
+      > img {
+        display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+
+    transition:
+      width 0.4s ease,
+      height 0.4s ease,
+      transform 0.4s ease;
+      }
+    }
+    
 
       > div > ul {
         display: flex;
@@ -627,6 +651,23 @@ main {
           color: var(--cockpitTextColor);
           text-shadow: var(--textGlow);
 
+
+          &:has(#Nav:checked) div:nth-of-type(4) > div:first-of-type > div {
+    &::after {
+      opacity: var(--cockpitScreen);
+      height: var(--cockpitHeight);
+      bottom: 12%;
+      animation: var(--radar-animation-main);
+    }
+
+    &::before {
+      opacity: var(--cockpitScreen);
+      height: 135px;
+      bottom: 12%;
+      animation: var(--radar-animation-before);
+    }
+  }
+
           > input[type="radio"] {
             appearance: none;
             position: relative;
@@ -721,6 +762,23 @@ main {
             height: 20px;
           }
         }
+      }
+
+      > div > img {
+        display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+
+    transition:
+      width 0.4s ease,
+      height 0.4s ease,
+      transform 0.4s ease;
       }
     }
     > div:first-of-type > div {
