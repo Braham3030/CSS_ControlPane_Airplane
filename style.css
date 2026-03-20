@@ -62,7 +62,7 @@ body {
 
   --shake-intensity: calc(max(0, var(--thrust) - 40) * 0.05px);
 
-  &:has(#themeToggle:checked) {
+  &:has(header input[type="checkbox"]:checked) {
     --cockpitColor: rgb(0, 67, 105);
     --cockpitTextColor: rgba(200, 220, 255, 0.8);
   }
@@ -118,31 +118,7 @@ body {
 
   /* ======================================================= */
 
-
-  /* #NavIMG,
-  #ComIMG,
-  #FuelIMG,
-  #main1IMG,
-  #main2IMG,
-  #main3IMG,
-  #main4IMG {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    opacity: 0;
-    width: 10%;
-    height: 10%;
-    object-fit: cover;
-
-    transition:
-      width 0.4s ease,
-      height 0.4s ease,
-      transform 0.4s ease;
-  } */
-
-  &:has(#Nav:checked) div:nth-of-type(5) > div:first-of-type > div {
+  &:has(input[value="Nav"]:checked) div:nth-of-type(5) > div:first-of-type > div {
     &::after {
       opacity: var(--cockpitScreen);
       height: var(--cockpitHeight);
@@ -158,13 +134,13 @@ body {
     }
   }
 
-  &:has(#Nav:checked) #NavIMG,
-  &:has(#Com:checked) #ComIMG,
-  &:has(#Fuel:checked) #FuelIMG,
-  &:has(#mainScreen1:checked) #main1IMG,
-  &:has(#mainScreen2:checked) #main2IMG,
-  &:has(#mainScreen3:checked) #main3IMG,
-  &:has(#mainScreen4:checked) #main4IMG {
+  &:has(input[value="Nav"]:checked) > main > div:nth-of-type(5) img:first-of-type,
+  &:has(input[value="Com"]:checked) > main > div:nth-of-type(5) img:nth-of-type(2),
+  &:has(input[value="Fuel"]:checked) > main > div:nth-of-type(5) img:nth-of-type(3),
+  &:has(input[value="mainScreen1"]:checked) > main > div:nth-of-type(2) > div:first-of-type img:nth-of-type(1),
+  &:has(input[value="mainScreen2"]:checked) > main > div:nth-of-type(2) > div:first-of-type img:nth-of-type(2),
+  &:has(input[value="mainScreen3"]:checked) > main > div:nth-of-type(2) > div:last-of-type img:nth-of-type(1),
+  &:has(input[value="mainScreen4"]:checked) > main > div:nth-of-type(2) > div:last-of-type img:nth-of-type(2) {
     display: block;
     opacity: var(--cockpitScreen);
     width: 100%;
@@ -650,23 +626,6 @@ main {
           margin: 0;
           color: var(--cockpitTextColor);
           text-shadow: var(--textGlow);
-
-
-          &:has(#Nav:checked) div:nth-of-type(4) > div:first-of-type > div {
-    &::after {
-      opacity: var(--cockpitScreen);
-      height: var(--cockpitHeight);
-      bottom: 12%;
-      animation: var(--radar-animation-main);
-    }
-
-    &::before {
-      opacity: var(--cockpitScreen);
-      height: 135px;
-      bottom: 12%;
-      animation: var(--radar-animation-before);
-    }
-  }
 
           > input[type="radio"] {
             appearance: none;
