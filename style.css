@@ -35,6 +35,7 @@
 }
 
 &:has(body > header > input[type="checkbox"]:checked) body {
+      /* https://gemini.google.com/share/db4ae4c846cc */
       --runway-IMG: url(img/RunwayRainbowIMG.png);
       --background-color-backup: black;
     }
@@ -158,6 +159,7 @@ body {
         border: 1px solid black;
         border-radius: 16px;
         font-size: 18px;
+        cursor: pointer;
 
         animation: var(--rainbow-animation);
         &:hover {
