@@ -29,14 +29,19 @@
   --runway-y: -180vh;
   --runway-speed: 1.5vh;
   --runway-zoom: 0.5vh;
+  --runway-IMG: url(img/RunwayIMG.png);
 }
+
+&:has(body > header > input[type="checkbox"]:checked) body {
+      --runway-IMG: url(img/Altitude_Speed_Indicator_Screen.webp);
+    }
 
 body {
   font-family: var(--font-family);
   width: 100vw;
   height: 100vh;
   background-color: skyblue;
-  background-image: url(img/RunwayIMG.png);
+  background-image: var(--runway-IMG);
   background-size: cover;
   background-position: center;
   background-position-y: var(--runway-y);
