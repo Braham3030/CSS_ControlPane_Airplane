@@ -61,11 +61,17 @@ body {
     background-size 6s cubic-bezier(0.5, 0, 1, 1);
 
   --shake-intensity: calc(max(0, var(--thrust) - 40) * 0.05px);
+  /* The shake-angle will allow the element to increase its angle when thrust goes up */
+  --shake-angle: calc(max(0, var(--thrust) - 40) * 0.05deg);
 
   &:has(header input[type="checkbox"]:checked) {
     --cockpitColor: rgb(0, 67, 105);
     --cockpitTextColor: rgba(200, 220, 255, 0.8);
   }
+
+  /* &:has(input[type="range"]) > header > h1 {
+      animation-play-state: running;
+    } */
 
   > header {
     display: flex;
@@ -94,15 +100,17 @@ body {
 
       transform-origin: top center;
 
-      transform: rotateX(45deg) translateY(calc(var(--shake-intensity) * 15));
+      transform: rotateX(-35deg) translateY(calc(var(--shake-intensity) * 15px));
 
       border-top: 4px dashed #666;
+      border-bottom: 4px dashed #666;
       padding-top: 10px;
+      padding-bottom: 10px;
 
       /* bounceIn 0.8s cubic-bezier(0.75, 0.38, 0, 0.7) */
       animation: headerShake 0.1s linear infinite;
 
-      animation-play-state: paused;
+      /* animation-play-state: paused; */
 
       &:active {
         transform-origin: top left;
@@ -112,9 +120,6 @@ body {
 
         transition: transform 0.5s ease-in, opacity 0.4s ease-in 0.1s;
       }
-    }
-    &:has(input[type="range"]:active) > header > h1 {
-      animation-play-state: running;
     }
     > input[type="checkbox"] {
       appearance: none;
@@ -1065,13 +1070,19 @@ main {
 
 @keyframes headerShake {
   0% {
-    transform: rotateX(45deg) rotateZ(-1deg);
+    transform: rotateX(-35deg) rotateZ(calc(var(--shake-angle) * -1));
+  }
+  25% {
+    transform: rotateX(-35deg) rotateZ(calc(var(--shake-angle) * 1));
   }
   50% {
-    transform: rotateX(45deg) rotateZ(1deg);
+    transform: rotateX(-35deg) rotateZ(0deg);
+  }
+  75% {
+    transform: rotateX(-35deg) rotateZ(calc(var(--shake-angle) * 1));
   }
   100% {
-    transform: rotateX(45deg) rotateZ(0deg);
+    transform: rotateX(-35deg) rotateZ(0deg);
   }
 }
 
