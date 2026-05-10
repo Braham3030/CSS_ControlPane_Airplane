@@ -19,6 +19,7 @@
   --radar-animation-main: none;
   --radar-animation-before: none;
   --enginePower: 0;
+  --cursorType: none;
 
   /* Imported font */
   --font-family: "Kavoon", serif;
@@ -34,7 +35,7 @@
   --rainbow-animation: none;
 }
 
-&:has(body > header > input[type="checkbox"]:checked) body {
+body:has(main > div:nth-of-type(5) > label > input[type="checkbox"]:checked) {
       /* https://gemini.google.com/share/db4ae4c846cc */
       --runway-IMG: url(img/RunwayRainbowIMG.png);
       --background-color-backup: black;
@@ -74,7 +75,7 @@ body {
   /* The shake-angle will allow the element to increase its angle when thrust goes up */
   --shake-angle: calc(max(0, var(--thrust) - 40) * 0.05deg);
 
-  &:has(header input[type="checkbox"]:checked) {
+  &:has(main > div:nth-of-type(5) > label > input[type="checkbox"]:checked) {
     /* --cockpitColor: rgb(0, 67, 105); */
     --cockpitColor: linear-gradient(
       115deg,
@@ -88,10 +89,6 @@ body {
     --rainbow-animation: rainbowShift 3s linear infinite;
     --cockpitTextColor: rgba(200, 220, 255, 0.8);
   }
-
-  /* &:has(input[type="range"]) > header > h1 {
-      animation-play-state: running;
-    } */
 
   > header {
     display: flex;
@@ -123,49 +120,21 @@ body {
 
       transform-origin: top center;
 
-      transform: rotateX(-35deg) translateY(calc(var(--shake-intensity) * 15px));
+      transform: rotateX(-35deg);
 
       border-top: 4px dashed #666;
       border-bottom: 4px dashed #666;
       padding-top: 10px;
       padding-bottom: 10px;
 
-      /* bounceIn 0.8s cubic-bezier(0.75, 0.38, 0, 0.7) */
-      animation: headerShake 0.1s linear infinite;
-
-      /* animation-play-state: paused; */
+      animation: headerShake 1.5s ease-in-out infinite;
 
       &:active {
         transform-origin: top left;
         transform: rotateX(80deg) rotateZ(15deg) translateY(300px);
         opacity: 0;
-        /* margin-bottom: 200px; */
 
         transition: transform 0.5s ease-in, opacity 0.4s ease-in 0.1s;
-      }
-    }
-    > input[type="checkbox"] {
-      appearance: none;
-      & + label {
-        position: absolute;
-        top: 1.5em;
-        right: 1.5em;
-        padding: 0.5em 1em;
-        background: var(--cockpitColor);
-        box-shadow: 0 0 5px var(--cockpitLight);
-        background-size: 300% 100%;
-        background-position: 0% 0%;
-        color: black;
-        border: 1px solid black;
-        border-radius: 16px;
-        font-size: 18px;
-        cursor: pointer;
-
-        animation: var(--rainbow-animation);
-        &:hover {
-          transform: scale(1.1);
-          color: white;
-        }
       }
     }
   }
@@ -233,6 +202,7 @@ body:has(
   --radar-animation-main: radarRotate 3s linear infinite 1s;
   --radar-animation-before: radarRotate 3s linear infinite 1.05s;
   --enginePower: 1;
+  --cursorType: pointer;
 }
 
 main {
@@ -349,8 +319,7 @@ main {
         gap: 5px;
         padding: 0;
         margin: 0;
-        width: 40px;
-
+        width: 70px;
         list-style-type: none;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         border-radius: 8px 0 0 8px;
@@ -360,7 +329,6 @@ main {
         > li {
           border-radius: 8px;
           font-size: 14px;
-
           position: relative;
           display: flex;
           justify-content: center;
@@ -377,22 +345,21 @@ main {
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            width: 40px;
-            height: 20px;
+            width: 70px;
+            height: 45px;
             margin: 0;
-
-            /* font-size: 8px; */
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             border-radius: 8px 0 0 8px;
             pointer-events: var(--inactiveButton);
+            cursor: var(--cursorType);
 
             &::after {
               content: "";
               position: absolute;
-              width: 5px;
-              height: 5px;
+              width: 10px;
+              height: 10px;
               border-radius: 50%;
-              transform: translateX(-200%);
+              transform: translateX(-50%);
               background: black;
               box-shadow: 0 0 5px var(--cockpitLight);
               z-index: -1;
@@ -405,11 +372,11 @@ main {
 
             &:checked {
               background: rgba(0, 0, 0, 0.5);
-              width: 30px;
+              width: 45px;
               box-shadow: 0 0 5px var(--cockpitLight);
 
               &::after {
-                transform: translateX(-400%);
+                transform: translateX(-310%);
                 opacity: 1;
                 z-index: 1;
 
@@ -430,7 +397,7 @@ main {
             }
 
             & + label {
-              font-size: 8px;
+              font-size: 12px;
               position: absolute;
               top: 50%;
               left: 50%;
@@ -446,7 +413,6 @@ main {
             width: 25px;
             height: 10px;
             border-radius: 16px;
-
             opacity: 0;
             background: rgba(0, 0, 0, 0.5);
             filter: blur(2px);
@@ -473,7 +439,6 @@ main {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         background: black;
         overflow: hidden;
-
         position: relative;
       }
     }
@@ -502,11 +467,9 @@ main {
       align-items: center;
       width: 150px;
       height: 150px;
-
       border-radius: 2px;
       border: 4px solid black;
       background: black;
-
 
       transform-origin: top center;
       transform: rotateX(10deg) translateZ(15px);
@@ -601,6 +564,7 @@ main {
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
           border-radius: 8px;
           pointer-events: var(--inactiveButton);
+          cursor: var(--cursorType);
 
           &::after {
             content: "";
@@ -684,9 +648,43 @@ main {
     background-size: 300% 100%;
     background-position: 0% 0%;
     transform-style: preserve-3d;
+    position: relative;
 
     transition: background 1.3s ease-in-out;
     animation: var(--rainbow-animation);
+
+    > label {
+      position: absolute;
+      top: 10px;
+      left: 46.2%;
+      transform: translateX(-50%) translateZ(60px);
+      z-index: 10;
+      border-radius: 16px;
+      padding: 0.5em 1em;
+      background: var(--cockpitColor);
+      box-shadow: 0 0 5px var(--cockpitLight);
+      background-size: 300% 100%;
+      background-position: 0% 0%;
+      font-size: 18px;
+      color: var(--cockpitTextColor);
+      cursor: var(--cursorType);
+      pointer-events: var(--inactiveButton);
+
+      animation: var(--rainbow-animation);
+
+      &:hover {
+        transform: translateX(-50%) translateZ(60px) scale(1.1);
+        color: black;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      }
+
+      > input[type="checkbox"] {
+        appearance: none;
+        display: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
 
     > div {
       display: flex;
@@ -729,25 +727,24 @@ main {
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            width: 40px;
-            height: 20px;
+            width: 60px;
+            height: 33px;
             margin: 0;
 
-            /* font-size: 8px; */
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             border-radius: 8px 0 0 8px;
             pointer-events: var(--inactiveButton);
+            cursor: var(--cursorType);
 
             &::after {
               content: "";
               position: absolute;
-              width: 5px;
-              height: 5px;
+              width: 10px;
+              height: 10px;
               border-radius: 50%;
-              transform: translateX(-200%);
+              transform: translateX(-50%);
               background: black;
               box-shadow: 0 0 5px var(--cockpitLight);
-
               z-index: -1;
               opacity: 0;
 
@@ -758,11 +755,11 @@ main {
 
             &:checked {
               background: rgba(0, 0, 0, 0.5);
-              width: 30px;
+              width: 40px;
               box-shadow: 0 0 5px var(--cockpitLight);
 
               &::after {
-                transform: translateX(-400%);
+                transform: translateX(-300%);
                 opacity: 1;
                 z-index: 1;
 
@@ -782,7 +779,7 @@ main {
               }
             }
             & + label {
-              font-size: 8px;
+              font-size: 12px;
               position: absolute;
               top: 50%;
               left: 50%;
@@ -812,28 +809,28 @@ main {
 
           &:hover::after {
             opacity: 1;
-            width: 40px;
-            height: 20px;
+            width: 60px;
+            height: 33px;
           }
         }
       }
 
       > div > img {
-        display: block;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    opacity: 0;
-    width: 10%;
-    height: 10%;
-    object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      opacity: 0;
+      width: 10%;
+      height: 10%;
+      object-fit: cover;
 
-    transition:
-      width 0.4s ease,
-      height 0.4s ease,
-      transform 0.4s ease;
-      }
+      transition:
+        width 0.4s ease,
+        height 0.4s ease,
+        transform 0.4s ease;
+        }
     }
     > div:first-of-type > div {
       width: 100px;
@@ -913,7 +910,6 @@ main {
       padding: 10px 0;
       margin: 0;
       border: none;
-      /* margin: 20em auto; */
       gap: 20px;
 
       div {
@@ -922,12 +918,8 @@ main {
         justify-content: center;
         position: relative;
         border: none;
-        /* border: .5px solid black; */
         width: 20px;
         height: 8em;
-        /* background: linear-gradient(to top, black 5%, transparent 5%); */
-
-        /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); */
       }
       input[type="range"] {
         appearance: none;
@@ -939,7 +931,6 @@ main {
         width: 100%;
         height: 100%;
         border-radius: 8px;
-        /* border-radius: 8px; */
         position: absolute;
         bottom: 0;
         writing-mode: vertical-lr;
@@ -967,7 +958,6 @@ main {
         }
 
         &::-webkit-slider-runnable-track {
-          /* background: linear-gradient(to top, black calc(var(--throttle1, 50) * 1%), blue calc(var(--throttle1, 50) * 1%)); */
           border: none;
           width: 100%;
           height: 100%;
@@ -1066,6 +1056,7 @@ main {
           height: 30px;
           border: 1px solid black;
           position: relative;
+          cursor: pointer;
 
           transition: border 0.8s ease-in-out;
 
@@ -1115,19 +1106,13 @@ main {
 
 @keyframes headerShake {
   0% {
-    transform: rotateX(-35deg) rotateZ(calc(var(--shake-angle) * -1));
-  }
-  25% {
-    transform: rotateX(-35deg) rotateZ(calc(var(--shake-angle) * 1));
+    transform: rotateX(calc(-35deg + (var(--thrust) * 1.2deg)));
   }
   50% {
-    transform: rotateX(-35deg) rotateZ(0deg);
-  }
-  75% {
-    transform: rotateX(-35deg) rotateZ(calc(var(--shake-angle) * 1));
+    transform: rotateX(calc(-35deg - (var(--thrust) * 1.2deg)));
   }
   100% {
-    transform: rotateX(-35deg) rotateZ(0deg);
+    transform: rotateX(calc(-35deg + (var(--thrust) * 1.2deg)));
   }
 }
 
