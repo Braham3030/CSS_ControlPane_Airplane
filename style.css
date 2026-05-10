@@ -1057,8 +1057,17 @@ main {
           border: 1px solid black;
           position: relative;
           cursor: pointer;
+          background: transparent;
+          filter: blur(0px);
 
-          transition: border 0.8s ease-in-out;
+          transition: border 0.6s ease-in-out,
+                      background 0.4s ease-in-out,
+                      filter 0.8s ease-in-out;
+
+          &:hover {
+            background: green;
+            filter: blur(1px);
+          }
 
           & + label {
             position: relative;
